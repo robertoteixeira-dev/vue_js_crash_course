@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import uuid from 'uuid';
+//import * as uuid from 'uuid';
 export default {
     name: "AddTodo",
     data() {
@@ -17,15 +17,17 @@ export default {
         }
     },
     methods: {
-        addTodo() {
+        addTodo(e) {
+            e.preventDefault();
             //npm i uuid - generate id's 
             const newTodo = {
-                id: uuid.v4(),
+                //id: uuid.v4(), - the API gives an ID 
                 title: this.title,
                 completed: false
             }
             // Send up to parent
             this.$emit('add-todo', newTodo);
+            this.title = '';
         }
     }
 }
